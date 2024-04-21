@@ -1,0 +1,26 @@
+/*header
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    z-index: 1000;
+}*/
+
+.logoMovil
+{
+    width: 10vw;
+    height: 12vw;
+}
+
+.logoEscritorio
+{
+    width: 11vw;
+    height: 13vw;
+}
+
+.bigDiv
+{
+    height: 20vw;
+}

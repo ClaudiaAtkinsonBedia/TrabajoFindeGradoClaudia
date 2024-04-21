@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> J.A.C. Suministros </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="row justify-content-between align-items-center">
+        <!-- Botón cuenta de iniciar sesión de usuario versión escritorio -->
+        <div class="col d-none d-lg-block text-center"> <!-- Entrar en cuenta y cambiar idioma -->
+          <i class="bi bi-person-circle"></i> <!-- Icono -->
+          <a href="#">Iniciar sesión</a> <!-- link para iniciar sesión -->
+        </div>
+        <!-- Fin de cuenta de iniciar sesión -->
+        <div class="col-lg-auto text-center">
+          <a href="LandingPage.html"><img class="d-flex d-none d-lg-block logoEscritorio mx-auto" src="img/logoSYT.png" alt="Logo de Share your tale"></a> <!-- Logo para la versión escritorio -->
+        </div>
+        
+        <!-- Botón idioma versión escritorio -->
+          <div class="col d-none d-lg-block text-center"> <!-- CAMBIARLO MÁS ADELANTE -->
+            <a href="#"> ES </a> <!-- link idioma español-->
+            |
+            <a href="#"> EN </a> <!-- link idioma inglés -->
+          </div>
+        <!-- Fin Botón cuenta versión escritorio -->
+      </div>
+    </div>
+    
+
+    <!-- BARRA DE NAVEGACIÓN -->
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container">
+        <!-- Botón menú cuando colapsa (hamburguesa) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="bi bi-list"></i>
+        </button>
+        <div class="col d-lg-none">
+          <a href="LandingPage.html"><img class="mx-auto d-flex d-block d-lg-none text-center logoMovil" src="img/logoSYT.png" alt="Logo de Share your tale"></a><!-- Logo para la versión móvil -->
+        </div>
+        <!-- Iconos CUENTA e IDIOMA versión móvil -->
+        
+        <div class="d-lg-none text-center">
+          <div> <!-- Link idioma -->
+            <a href="#"> ES </a> <!-- link idioma español-->
+            |
+           <a href="#"> EN </a> <!-- link idioma inglés -->
+         </div>
+          <div> <!-- Entrar en cuenta y cambiar idioma -->
+            <a href="#">Iniciar sesión</a> <!-- Icono para iniciar sesión -->
+          </div>
+        </div>
+        <!-- Fin Iconos CUENTA e IDIOMA versión móvil -->
+
+        
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav mx-lg-auto align-items-lg-center">
+            <li class="nav-item dropdown m-lg-4">
+              <li class="nav-item">
+                <a class="nav-link active m-lg-4" aria-current="page" href="LandingPage.html">Inicio</a>
+              </li>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active m-lg-4" aria-current="page" href="#">Hazte una cuenta</a>
+            </li>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Descubre..." aria-label="Search">
+              <button class="btn btn-outline-primary" type="submit">Busca</button>
+            </form>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link m-lg-4" href="#">Contacto</a>
+            </li>
+            <li class="nav-item m-lg-4">
+          </ul>
+        </div>
+      </div> 
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+
+
+    <div class="container mb-5">
+      <div class="row mt-4 ms-3">
+        <h1 class="text-center">Bienvenid@ a Share your tale</h1>
+        <h3 class="text-center">Donde escribir está a tu alcance.</h3>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-lg-3 border border-primary rounded-4 my-2 bigDiv">
+          <p>¿Quieres ser lector?</p>
+        </div>
+        <div class="col-lg-3 border border-primary rounded-4 my-2 bigDiv">
+          <p>¿Quieres ser escritor?</p>
+        </div>
+        <div class="col-lg-3 border border-primary rounded-4 my-2 bigDiv">
+          <p>¿Quieres ser editor?</p>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3 mb-3">
+      <div class="col text-center">
+        <button type="button" class="btn btn-primary rounded-pill mx-3">Empieza a leer</button>
+        <button type="button" class="btn btn-primary rounded-pill mx-3">Empieza a escribir</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <!-- Versión escritorio / tablet -->
+
+    <!-- Mapa del sitio -->
+    <div class="container d-none d-lg-block">
+      <div class="row">
+        <div class="col">
+          <h6 class="text-center">MAPA DEL SITIO</h6>
+          <ul class="pt-3">
+            <li>Inicio</li>
+            <li>Hazte una cuenta</li>
+            <li><form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Descubre..." aria-label="Search">
+              <button class="btn btn-outline-primary" type="submit">Busca</button>
+            </form></li>
+            <li>Contacto</li>
+            <li>Iniciar sesión</li>
+          </ul>
+        </div>
+        <!-- Aviso legal -->
+        <div class="col ps-5 border border-bottom-0 border-end-0 border-top-0 border-dark">
+          <h6 class="text-center">INFORMACIÓN</h6>
+          <ul class="pt-3">
+            <li>Aviso Legal</li>
+            <li>Política de Cookies</li>
+            <li>Política de Privacidad</li>
+          </ul>
+        </div>
+  
+        <!-- Contacto -->
+        <div class="col ps-5 border border-bottom-0 border-end-0 border-top-0 border-dark">
+          <h6 class="text-center"> CONTACTO </h6>
+          <ul class="pt-3">
+            <li>
+              Contacta con nosotros
+            </li>
+            <li>
+              AQUÍ LOS ICONOS
+            </li>
+        </div>
+      </div>
+    </div>
+    <!-- Fin versión escritorio / tablet -->
+
+    <!-- Versión móvil -->
+
+    <!-- Mapa del sitio -->
+    <div class="container d-lg-none">
+      <div class="row">
+        <div class="col-12 pt-3 d-flex flex-column align-items-center border border-start-0 border-end-0 border-top-0 border-dark">
+          <h6>MAPA DEL SITIO</h6>
+          <ul class="d-flex flex-column">
+            <li>Inicio</li>
+            <li>Hazte una cuenta</li>
+            <li><form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Descubre..." aria-label="Search">
+              <button class="btn btn-outline-primary" type="submit">Busca</button>
+            </form></li>
+            <li>Contacto</li>
+            <li>Iniciar sesión</li>
+          </ul>
+        </div>
+        <!-- Aviso legal -->
+        <div class="col-12 pt-3 d-flex flex-column align-items-center border border-start-0 border-end-0 border-top-0 border-dark">
+          <h6>INFORMACIÓN</h6>
+          <ul class="d-flex flex-column">
+            <li>Aviso Legal</li>
+            <li>Política de Cookies</li>
+            <li>Política de Privacidad</li>
+          </ul>
+        </div>
+  
+        <!-- Contacto -->
+        <div class="col-12 pt-3 d-flex flex-column align-items-center border border-bottom-0 border-start-0 border-end-0 border-top-0 border-dark">
+          <h6>CONTACTO</h6>
+          <ul class="d-flex flex-column ms-5 ps-5">
+            <li>
+              Contacta con nosotros
+            </li>
+            <li>
+              AQUÍ LOS ICONOS
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Fin versión móvil -->
+
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
