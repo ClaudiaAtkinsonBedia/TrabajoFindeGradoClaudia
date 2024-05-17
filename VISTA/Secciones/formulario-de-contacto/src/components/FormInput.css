@@ -1,0 +1,10 @@
+span
+{
+    color: red;
+    display: none;
+}
+
+input[focused="true"] ~ span
+{
+    display: block;
+}

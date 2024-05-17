@@ -80,7 +80,7 @@
             </form>
             </li>
             <li class="nav-item">
-              <a class="nav-link m-lg-4" href="#">Contacto</a>
+              <a class="nav-link m-lg-4" href="index.php?pagina=contacto">Contacto</a>
             </li>
             <li class="nav-item m-lg-4">
           </ul>

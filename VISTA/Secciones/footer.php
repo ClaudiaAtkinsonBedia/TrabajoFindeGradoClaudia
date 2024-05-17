@@ -77,7 +77,7 @@
       <h6>CONTACTO</h6>
       <ul class="d-flex flex-column">
         <li>
-          Contacta con nosotros
+          <a href="index.php?pagina=contacto">Contacta con nosotros</a>
         </li>
         <li>
           AQUÍ LOS ICONOS
@@ -91,6 +91,10 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<!--<script src="formulario-de-contacto/build/static/js/main.3cd8e458.js"></script>-->
+  <script>
+    ReactDOM.render(<App />, document.getElementById('formulario-de-contacto'));
+  </script>
 </body>
 
 </html>

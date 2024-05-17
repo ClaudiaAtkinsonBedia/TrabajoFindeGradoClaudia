@@ -1,0 +1,21 @@
+.logoMovil /* PENSAR DIMENSIONES PARA MÓVIL */
+{
+    width: 10vw;
+    height: 12vw;
+}
+
+.logoEscritorio
+{
+    width: 11vw;
+    height: 13vw;
+}
+
+.barraDeNavegacion
+{
+    height: 3vw;
+}
+
+.bigDiv
+{
+    height: 20vw;
+}
