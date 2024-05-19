@@ -22,7 +22,7 @@ function Header() {
         <div className="row justify-content-between align-items-center">
 
           <div className="col d-none d-lg-block text-center">
-          <Link to="/iniciarSesion"><i className="bi bi-person-circle"></i>
+          <Link to="/login"><i className="bi bi-person-circle"></i>
             Iniciar sesión</Link>
           </div>
 
@@ -57,7 +57,7 @@ function Header() {
               <p>EN</p>
             </div>
             <div>
-              <Link to="/iniciarSesion">Iniciar sesión</Link>
+              <Link to="/login">Iniciar sesión</Link>
             </div>
           </div>
 
@@ -69,7 +69,7 @@ function Header() {
                 </li>
               </li>
               <li className="nav-item">
-                <Link to="/iniciarSesion" className="nav-link active m-lg-4" aria-current="page">Hazte una cuenta</Link>
+                <Link to="/register" className="nav-link active m-lg-4" aria-current="page">Hazte una cuenta</Link>
               </li>
               <li>
                 <form className="d-flex" onSubmit={handleSubmit}>

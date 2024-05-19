@@ -1,7 +1,26 @@
 <?php
+include 'config.php';
+include_once 'cors.php';
 
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Scripting/EmptyPHP.php to edit this template
- */
+header('Content-Type: application/json');
+
+$input = json_decode(file_get_contents('php://input'), true);
+
+$username = $input['username'];
+$name = $input['name'];
+$surname = $input['surname'];
+$email = $input['email'];
+$dateBorn = $input['dateBorn'];
+$password = $input['password'];
+$escritor = $input['escritor'];
+$editor = $input['editor'];
+$lector = $input['lector'];
+
+$response = [
+    'status' => 'success',
+    'message' => 'Te has registrado correctamente'
+];
+
+echo json_encode($response);
+?>
 

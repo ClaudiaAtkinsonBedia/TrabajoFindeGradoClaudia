@@ -1,6 +1,7 @@
 import './Style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 function MainContacto() {
   const [values, setValues] = useState({
@@ -14,6 +15,8 @@ function MainContacto() {
     email: "",
     message: "",
   });
+
+  const form = useRef();
 
   const inputs = [
     {
@@ -59,7 +62,7 @@ function MainContacto() {
       case "email":
         errorMessage = validateEmail(value);
         break;
-      case "mensaje":
+      case "message":
         errorMessage = validateMensaje(value);
         break;
       default:
@@ -80,7 +83,7 @@ function MainContacto() {
     }
 
     // Para verificar el formato del nombre
-    const regexNombre = /^[A-ZÁÉÍÓÚÄËÏÖÜÑæaø'-záéíóúäëïöüñ?]+(?:[- ][A-ZÁÉÍÓÚÄËÏÖÜÑæaø'-záéíóúäëïöüñ]+)+$/;
+    const regexNombre = /^[A-ZÁÉÍÓÚÄËÏÖÜÑæaø'-záéíóúäëïöüñ?]+(?:[- ][A-ZÁÉÍÓÚÄËÏÖÜÑæaø'-záéíóúäëïöüñ]+)+$/; // /^[A-ZÁÉÍÓÚÄËÏÖÜÑæaø'-záéíóúäëïöüñ]+(?:[- ][A-ZÁÉÍÓÚÄËÏÖÜÑæaø'-záéíóúäëïöüñ]+)+$/i;
     if (!regexNombre.test(value)) {
       return "El nombre no es válido. Asegúrese de que esté bien escrito y no contenga caracteres especiales";
     }
@@ -96,9 +99,8 @@ function MainContacto() {
     }
 
     const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/; // La expresión regular del correo electrónico
-
     if (!regexEmail.test(value)) {
-      return "El correo electrónico no cumple con los requisitos";
+      return "El correo electrónico no es válido";
     }
 
     // Si pasa todas las validaciones, no hay error
@@ -112,67 +114,103 @@ function MainContacto() {
       }
   
       if (value.length < 20) {
-        return "El mensaje debe tener un mínimo de 20 caracteres.";
+        return `El mensaje debe tener un mínimo de 20 caracteres. ${value.length}/500`;
       }
   
       if (value.length > 500) {
-        return "El mensaje debe tener un máximo de 500 caracteres.";
+        return `El mensaje debe tener un máximo de 500 caracteres.${value.length}/500`;
       }
-  
-      return `${value.length}/500`;
+      
+      if (value.length > 20 && value.length < 500)
+      {
+        
+        return "";
+      }
+      
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validamos todos los campos antes de enviar el formulario
-    const newErrors = {};
-    Object.keys(values).forEach((name) => {
-      const errorMessage = validateInput(name, values[name]);
-      if (errorMessage) {
-        newErrors[name] = errorMessage;
-      }
+    const isUsernameValid = validateUsername(values.username) === "";
+    const isEmailValid = validateEmail(values.email) === "";
+    const isMessageValid = validateMensaje(values.message) === "";
+
+    setErrors({
+      username: validateUsername(values.username),
+      email: validateEmail(values.email),
+      message: validateMensaje(values.message),
     });
 
-    setErrors(newErrors);
 
-    // Si no hay errores, enviar el formulario
-    if (!validateUsername(values.username) && !validateEmail(values.email) && !validateMensaje(values.message)) {
-      // Envío del formulario
-      alert("Formulario enviado correctamente.");
+  if (isUsernameValid && isEmailValid && isMessageValid) {
+    sendEmail(e);
+    } else {
+      alert("Lo sentimos, algo ha ido mal.");
     }
+  };
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs.sendForm('service_57t6u1g', 'template_bllkyb5', form.current, 'tZze0QvuYvzD1VAOP')
+      .then(
+        (result) => {
+          console.log('SUCCESS!', result.text);
+          alert('Formulario enviado correctamente.');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+          alert('Error al enviar el formulario. Por favor, inténtelo de nuevo más tarde.');
+        }
+      );
   };
 
   return (
     <div>
-
       <main>
         <div className="container text-center">
-          <form className="row" onSubmit={handleSubmit} noValidate>
-            {inputs.map((input) => (
-              <div key={input.id} className="col-10 mx-auto">
-                <label htmlFor={input.id}>{input.label}</label>
-                {input.type === "textarea" ? (
-                  <textarea
-                    name={input.name}
-                    value={values[input.name]}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder={input.placeholder}
-                  ></textarea>
-                ) : (
-                  <input
-                    type={input.type}
-                    name={input.name}
-                    value={values[input.name]}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder={input.placeholder}
-                  />
-                )}
-                <span className="text-danger">{errors[input.name]}</span>
-              </div>
-            ))}
+          <form className="row" ref={form} onSubmit={handleSubmit} noValidate>
+            <div className="col-10 mx-auto">
+              <label htmlFor="username">Nombre y apellidos</label>
+              <input
+                type="text"
+                name="username"
+                value={values.username}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="Nombre y apellidos"
+              />
+              <span className="text-danger">
+                {errors.username}
+              </span>
+            </div>
+            <div className="col-10 mx-auto">
+              <label htmlFor="email">Correo Electrónico</label>
+              <input
+                type="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="Correo electrónico"
+              />
+              <span className="text-danger">
+                {errors.email}
+              </span>
+            </div>
+            <div className="col-10 mx-auto">
+              <label htmlFor="message">Mensaje</label>
+              <textarea
+                name="message"
+                value={values.message}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="Mensaje"
+              ></textarea>
+              <span className={errors.message ? "text-danger" : "text-success"}>
+                {errors.message || (values.message.length > 0 && `${values.message.length}/500`)}
+              </span>
+            </div>
             <div className="col-12 mt-2">
               <button type="submit" className="btn btn-primary">
                 Enviar

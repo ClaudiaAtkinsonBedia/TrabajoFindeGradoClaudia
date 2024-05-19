@@ -4,9 +4,10 @@ import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
 import MainInicio from './MainInicio';
 import MainContacto from './MainContacto';
-import IniciarSesion from './IniciarSesion';
 import Header from "./Header";
 import Footer from "./Footer";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 
 function AppRouter() {
@@ -16,7 +17,8 @@ function AppRouter() {
         <Routes>
           <Route path="/" element={<MainInicio />} />
           <Route path="/contacto" element={<MainContacto />} />
-          <Route path="/iniciarSesion" element={<IniciarSesion />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       <Footer />
     </BrowserRouter>
