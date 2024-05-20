@@ -8,6 +8,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import MainResultados from "./MainResultados";
 
 
 function AppRouter() {
@@ -19,6 +20,7 @@ function AppRouter() {
           <Route path="/contacto" element={<MainContacto />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/resultados" element={<MainResultados />} />
         </Routes>
       <Footer />
     </BrowserRouter>

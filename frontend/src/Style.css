@@ -29,3 +29,39 @@
 {
     color: red;
 }
+
+/*.search-results 
+{
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+  }
+  
+  .search-results ul 
+  {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .search-results li 
+  {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .search-results li a 
+  {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .search-results li:hover 
+  {
+    background: #f0f0f0;
+  } */
+  

@@ -169,6 +169,7 @@ function MainContacto() {
     <div>
       <main>
         <div className="container text-center">
+          <h3 className="mb-3 mt-3">Formulario de contacto</h3>
           <form className="row" ref={form} onSubmit={handleSubmit} noValidate>
             <div className="col-10 mx-auto">
               <label htmlFor="username">Nombre y apellidos</label>
@@ -211,7 +212,7 @@ function MainContacto() {
                 {errors.message || (values.message.length > 0 && `${values.message.length}/500`)}
               </span>
             </div>
-            <div className="col-12 mt-2">
+            <div className="col-12 mt-3 mb-3">
               <button type="submit" className="btn btn-primary">
                 Enviar
               </button>

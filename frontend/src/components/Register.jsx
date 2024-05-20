@@ -173,14 +173,24 @@ function Register() {
         setErrors(newErrors);
     
         if (Object.values(newErrors).every((error) => error === '')) {
-            const response = await fetch('http://localhost/backend/CONTROLADOR/Registrar.php', {
+            const response = await fetch('http://localhost:8081/index.php?action=register', {
+                //mode: 'no-cors',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(values),
             });
+
+            if (response.status != 200) {
+                throw new Error('Network response was not ok ' + response.status);
+            }
+
             const data = await response.json();
+            if (!data) {
+                throw new Error('Respuesta vacía del servidor');
+            }
+
             if (data.status === 'success') {
                 alert('Te has registrado correctamente');
             } else {
@@ -267,7 +277,7 @@ function Register() {
                         <span className="text-danger">{errors.pass}</span>
                         <div className="form-group mt-3">
                         <h4>¿Qué tipo de usuario quieres ser?</h4>
-                        <p>Puedes elegir más de una si lo deseas</p>
+                        <p>Puedes elegir más de uno si lo deseas</p>
                             <div className="d-flex justify-content-around mt-2">
                                 <div className="form-check form-check-inline">
                                     <input className="form-check-input" type="checkbox" name="escritor" id="escritor" checked={values.escritor} onChange={handleCheckboxChange} />
