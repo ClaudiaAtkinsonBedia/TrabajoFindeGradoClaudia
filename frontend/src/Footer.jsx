@@ -1,17 +1,33 @@
 import './Style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { dataES } from './dataES';
+import MainResultados from './MainResultados';
 
 function Footer() {
-    const [searchQuery, setSearchQuery] = useState('');
+    const [searchQuery, setSearch] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+    const [showResults, setShowResults] = useState(false);
 
     const handleSearchChange = (e) => {
-        setSearchQuery(e.target.value);
+        const query = e.target.value;
+        setSearch(query);
+        if (query) {
+        const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(query.toLowerCase()));
+        setSearchResults(results);
+        setShowResults(true);
+        blur(setSearchResults);
+        } else {
+        setShowResults(false);
+        }
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+        setSearchResults(results);
+        setShowResults(true);
         console.log('Búsqueda realizada:', searchQuery);
     };
 
@@ -27,7 +43,7 @@ function Footer() {
                             </li>
                                     <li><Link to="/iniciarSesion">Hazte una cuenta</Link></li>
                             <li>
-                                <form className="d-flex" onSubmit={handleSubmit}>
+                            <form className="d-flex" onSubmit={handleSubmit}>
                                 <input
                                     className="form-control me-2"
                                     type="search"
@@ -113,6 +129,7 @@ function Footer() {
                 </div>
             </div>
         </div>
+        {showResults && <MainResultados results={searchResults} />}
     </footer>
     );
 }
