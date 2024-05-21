@@ -32,7 +32,7 @@ export const dataES = [{
 },
 {
     "id": 9,
-    "name": "Adventura"
+    "name": "Aventura"
 },
 {
     "id": 10,
