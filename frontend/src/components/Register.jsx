@@ -174,7 +174,6 @@ function Register() {
     
         if (Object.values(newErrors).every((error) => error === '')) {
             const response = await fetch('http://localhost:8081/index.php?action=register', {
-                //mode: 'no-cors',
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

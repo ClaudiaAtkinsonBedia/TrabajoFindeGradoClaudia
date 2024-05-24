@@ -18,34 +18,6 @@ function MainContacto() {
 
   const form = useRef();
 
-  const inputs = [
-    {
-      id: 1,
-      name: "username",
-      type: "text",
-      placeholder: "Nombre y apellidos",
-      label: "Nombre y apellidos",
-    },
-    {
-      id: 2,
-      name: "email",
-      type: "email",
-      placeholder: "Correo electrónico",
-      label: "Correo Electrónico",
-      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-      errorMessage: "Por favor, introduce una dirección de correo electrónico válida"
-    },
-    {
-      id: 3,
-      name: "message",
-      type: "textarea",
-      placeholder: "Mensaje",
-      label: "Mensaje",
-      pattern: /^.*$/,
-      errorMessage: "Este campo es obligatorio"
-    }
-  ];
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });

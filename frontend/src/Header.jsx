@@ -14,6 +14,7 @@ function Header() {
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearch(query);
+    
     if (query) {
       const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(query.toLowerCase()));
       setSearchResults(results);
@@ -25,10 +26,10 @@ function Header() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    const results = data.filter(item => item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase()));
     setSearchResults(results);
     setShowResults(true);
-    console.log('Búsqueda realizada:', searchQuery);
   };
 
   return (

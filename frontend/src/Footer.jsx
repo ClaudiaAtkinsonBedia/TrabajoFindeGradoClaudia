@@ -11,25 +11,26 @@ function Footer() {
     const [showResults, setShowResults] = useState(false);
 
     const handleSearchChange = (e) => {
-        const query = e.target.value;
-        setSearch(query);
-        if (query) {
-        const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(query.toLowerCase()));
-        setSearchResults(results);
-        setShowResults(true);
-        blur(setSearchResults);
-        } else {
-        setShowResults(false);
-        }
-    };
+    const query = e.target.value;
+    setSearch(query);
+    
+    if (query) {
+      const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(query.toLowerCase()));
+      setSearchResults(results);
+      setShowResults(true);
+      blur(setSearchResults);
+    } else {
+      setShowResults(false);
+    }
+  };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase()));
-        setSearchResults(results);
-        setShowResults(true);
-        console.log('Búsqueda realizada:', searchQuery);
-    };
+    e.preventDefault();
+    
+    const results = data.filter(item => item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase()));
+    setSearchResults(results);
+    setShowResults(true);
+  };
 
     return (    
     <footer>
