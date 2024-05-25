@@ -9,26 +9,29 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json; charset=UTF-8");
 
-// Verificar que el método de solicitud sea POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Decodificar los datos JSON recibidos del cliente
     $data = json_decode(file_get_contents('php://input'), true);
 
-    // Validar los datos recibidos
     $username = $data['username'] ?? '';
     $password = $data['password'] ?? '';
 
-    file_put_contents('php://stderr', print_r($data, TRUE));
-    
-    $pdo = new PDO('mysql:host=localhost;dbname=your_db', 'your_user', 'your_password');
-    $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username');
-    $stmt->execute(['username' => $username]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (empty($username) || empty($password)) {
+        echo json_encode(['status' => 'error', 'message' => 'Missing required fields']);
+        exit();
+    }
 
-    if ($user && password_verify($password, $user['password'])) { // Assuming password is hashed
-        echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso']);
-    } else {
-        echo json_encode(['status' => 'error', 'message' => 'Credenciales incorrectas']);
+    try {
+        $stmt = $conn->prepare('SELECT * FROM users WHERE username = :username');
+        $stmt->execute(['username' => $username]);
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($password, $user['password'])) {
+            echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Credenciales incorrectas']);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);
     }
 } else {
     echo json_encode(['status' => 'error', 'message' => 'Método no permitido']);

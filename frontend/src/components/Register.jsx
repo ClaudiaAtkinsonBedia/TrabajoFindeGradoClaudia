@@ -8,10 +8,13 @@ function Register() {
         email: "",
         dateBorn: "",
         password: "",
-        pass: "",
-        escritor:"false",
-        editor:"false",
-        lector:"false",
+        pass: ""
+    });
+
+    const [checkboxValues, setCheckboxValues] = useState({
+        escritor: false,
+        editor: false,
+        lector: false,
     });
 
     const [errors, setErrors] = useState({
@@ -37,8 +40,9 @@ function Register() {
         const { name, checked } = e.target;
         setValues((prevValues) => ({
             ...prevValues,
-            [name]: checked
+            [name]: checked.toString() // Convertir el valor booleano a string
         }));
+        validateInput(name, checked.toString());
     };
 
     const validateInput = (name, value) => {
@@ -65,6 +69,8 @@ function Register() {
             case "pass":
                 errorMessage = validateConfirmPassword(value);
                 break;
+            case "checkboxes":
+                errorMessage = validateCheckboxes(value);
             default:
                 break;
         }
@@ -159,6 +165,15 @@ function Register() {
         return '';
     };
 
+    const validateCheckboxes = () => {
+        const { escritor, editor, lector } = values;
+        if (escritor !== "true" && editor !== "true" && lector !== "true") {
+            return "Debes seleccionar al menos un tipo de usuario"; // Retorna un mensaje de error si ningún checkbox es seleccionado
+        } else {
+            return ""; // No retorna nada en caso contrario
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const newErrors = {};
@@ -169,9 +184,16 @@ function Register() {
             }
         });
     
+        // Validar los checkboxes
+        const checkboxErrorMessage = validateCheckboxes();
+        if (checkboxErrorMessage) {
+            newErrors.checkboxes = checkboxErrorMessage;
+        }
+    
         setErrors(newErrors);
     
         if (Object.values(newErrors).every((error) => error === '')) {
+            // Solo envía el formulario en caso de que no haya errores
             try {
                 const response = await fetch('http://localhost:8081/index.php?action=register', {
                     method: 'POST',
@@ -282,7 +304,8 @@ function Register() {
                                     <input className="form-check-input"
                                     type="checkbox"
                                     name="escritor"
-                                    checked={values.escritor}
+                                    value="escritor"
+                                    checked={values.escritor === "true"} 
                                     onChange={handleCheckboxChange}
                                     />
                                     Escritor</label>
@@ -292,7 +315,8 @@ function Register() {
                                     <input className="form-check-input"
                                     type="checkbox"
                                     name="editor"
-                                    checked={values.editor}
+                                    value="editor"
+                                    checked={values.editor === "true"} 
                                     onChange={handleCheckboxChange}
                                     />
                                     Editor</label>
@@ -302,12 +326,14 @@ function Register() {
                                     <input className="form-check-input"
                                     type="checkbox"
                                     name="lector"
-                                    checked={values.lector}
+                                    value="lector"
+                                    checked={values.lector === "true"} 
                                     onChange={handleCheckboxChange}
                                     />
                                     Lector</label>
                                 </div>
                             </div>
+                            <span className="text-danger">{errors.checkboxes}</span>
                         </div>
                         <button type="submit" className="btn btn-primary mt-3 mb-3">Regístrate</button>
                     </form>

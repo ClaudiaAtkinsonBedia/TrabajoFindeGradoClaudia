@@ -94,6 +94,28 @@ function Login() {
         }
     }
 
+    async function login() {
+        const username = 'user_input_username';
+        const password = 'user_input_password';
+    
+        const response = await fetch('http://localhost:8081/index.php?action=login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            }),
+        });
+    
+        const result = await response.json();
+        console.log(result);
+    }
+    
+    login();
+    
+
     return (
         <div className='container'>
             <div className='row justify-content-center'>
@@ -120,7 +142,9 @@ function Login() {
                             />
                         </div>
                         <span className="text-danger">{errors.password}</span>
-                        <button type="submit" className="btn btn-primary mt-3 mb-3">Iniciar Sesión</button>
+                        <div>
+                            <button type="submit" className="btn btn-primary mt-3 mb-3">Iniciar Sesión</button>
+                        </div>
                     </form>
                 </div>
             </div>
