@@ -9,9 +9,9 @@ function Register() {
         dateBorn: "",
         password: "",
         pass: "",
-        escritor: "false",
-        editor: "false",
-        lector: "false"
+        escritor:"false",
+        editor:"false",
+        lector:"false",
     });
 
     const [errors, setErrors] = useState({
@@ -40,7 +40,6 @@ function Register() {
             [name]: checked
         }));
     };
-    
 
     const validateInput = (name, value) => {
         let errorMessage = "";
@@ -173,27 +172,27 @@ function Register() {
         setErrors(newErrors);
     
         if (Object.values(newErrors).every((error) => error === '')) {
-            const response = await fetch('http://localhost:8081/index.php?action=register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(values),
-            });
-
-            if (response.status != 200) {
-                throw new Error('Network response was not ok ' + response.status);
-            }
-
-            const data = await response.json();
-            if (!data) {
-                throw new Error('Respuesta vacía del servidor');
-            }
-
-            if (data.status === 'success') {
-                alert('Te has registrado correctamente');
-            } else {
-                alert('No te has podido registrar: ' + data.message);
+            try {
+                const response = await fetch('http://localhost:8081/index.php?action=register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(values),
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.status === 'success') {
+                        alert('Te has registrado correctamente');
+                    } else {
+                        alert('No te has podido registrar: ' + data.message);
+                    }
+                } else {
+                    throw new Error('Network response was not ok ' + response.status);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
             }
         }
     };
@@ -279,16 +278,34 @@ function Register() {
                         <p>Puedes elegir más de uno si lo deseas</p>
                             <div className="d-flex justify-content-around mt-2">
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" name="escritor" id="escritor" checked={values.escritor} onChange={handleCheckboxChange} />
-                                    <label className="form-check-label" htmlFor="escritor">Escritor</label>
+                                    <label className="form-check-label"> 
+                                    <input className="form-check-input"
+                                    type="checkbox"
+                                    name="escritor"
+                                    checked={values.escritor}
+                                    onChange={handleCheckboxChange}
+                                    />
+                                    Escritor</label>
                                 </div>
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" name="editor" id="editor" checked={values.editor} onChange={handleCheckboxChange} />
-                                    <label className="form-check-label" htmlFor="editor">Editor</label>
+                                    <label className="form-check-label">
+                                    <input className="form-check-input"
+                                    type="checkbox"
+                                    name="editor"
+                                    checked={values.editor}
+                                    onChange={handleCheckboxChange}
+                                    />
+                                    Editor</label>
                                 </div>
                                 <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="checkbox" name="lector" id="lector" checked={values.lector} onChange={handleCheckboxChange} />
-                                    <label className="form-check-label" htmlFor="lector">Lector</label>
+                                    <label className="form-check-label">
+                                    <input className="form-check-input"
+                                    type="checkbox"
+                                    name="lector"
+                                    checked={values.lector}
+                                    onChange={handleCheckboxChange}
+                                    />
+                                    Lector</label>
                                 </div>
                             </div>
                         </div>

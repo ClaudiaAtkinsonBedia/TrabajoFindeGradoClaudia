@@ -1,4 +1,5 @@
 <?php
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -32,9 +33,9 @@ try {
         $email = $input['email'];
         $dateBorn = $input['dateBorn'];
         $password = password_hash($input['password'], PASSWORD_DEFAULT);
-        $escritor = $input['escritor'] === "true" ? 1 : 0;
-        $editor = $input['editor'] === "true" ? 1 : 0;
-        $lector = $input['lector'] === "true" ? 1 : 0;
+        $escritor = isset($input['escritor']) && $input['escritor'] ? 1 : 0;
+        $editor = isset($input['editor']) && $input['editor'] ? 1 : 0;
+        $lector = isset($input['lector']) && $input['lector'] ? 1 : 0;
 
         try {
             $conn->beginTransaction();
