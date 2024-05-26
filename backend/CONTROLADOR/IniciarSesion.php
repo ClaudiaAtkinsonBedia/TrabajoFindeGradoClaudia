@@ -21,12 +21,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     try {
-        $stmt = $conn->prepare('SELECT * FROM users WHERE username = :username');
+        $stmt = $conn->prepare('
+            SELECT users.*, roles.role_name as userType
+            FROM users
+            JOIN user_roles ON users.id = user_roles.user_id
+            JOIN roles ON user_roles.role_id = roles.id
+            WHERE users.username = :username
+        ');
         $stmt->execute(['username' => $username]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso']);
+            echo json_encode(['status' => 'success', 'message' => 'Inicio de sesión exitoso', 'userType' => $user['userType']]);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Credenciales incorrectas']);
         }

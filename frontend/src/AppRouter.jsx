@@ -9,6 +9,8 @@ import Footer from "./Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import MainResultados from "./MainResultados";
+import MainAdmin from "./MainAdmin";
+import MainEscritor from "./MainEscritor";
 
 
 function AppRouter() {
@@ -21,6 +23,8 @@ function AppRouter() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/resultados" element={<MainResultados />} />
+          <Route path="/admin" element={<MainAdmin />} />
+          <Route path="/escritor" element={<MainEscritor />} />
         </Routes>
       <Footer />
     </BrowserRouter>
