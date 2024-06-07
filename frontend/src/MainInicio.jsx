@@ -1,5 +1,5 @@
-import BotonesPildoraMain from './BotonesPildoraMain';
-import SectionComponentBigDiv from './SectionComponentBigDiv';
+import BotonesPildoraMain from './BotonesPildoraMain.js';
+import SectionComponentBigDiv from './SectionComponentBigDiv.js';
 import './Style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 

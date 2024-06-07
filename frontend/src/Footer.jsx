@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { dataES } from './dataES';
-import MainResultados from './MainResultados';
+import MainResultados from './MainResultados.jsx';
 
 function Footer() {
     const [searchQuery, setSearch] = useState('');

@@ -1,17 +1,17 @@
-import * as React from "react";
+import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes } from "react-router-dom";
 import { Route } from "react-router-dom";
-import MainInicio from './MainInicio';
-import MainContacto from './MainContacto';
-import Header from "./Header";
-import Footer from "./Footer";
+import MainInicio from './MainInicio.jsx';
+import MainContacto from './MainContacto.jsx';
+import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import MainResultados from "./MainResultados";
-import MainAdmin from "./MainAdmin";
-import MainEscritor from "./MainEscritor";
-
+import MainResultados from "./MainResultados.jsx";
+import MainAdmin from "./MainAdmin.jsx";
+import MainEscritor from "./MainEscritor.jsx";
+import PrivateRoute from "./PrivateRoute.jsx";
 
 function AppRouter() {
   return (
@@ -23,8 +23,16 @@ function AppRouter() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/resultados" element={<MainResultados />} />
-          <Route path="/admin" element={<MainAdmin />} />
-          <Route path="/escritor" element={<MainEscritor />} />
+          <Route path="/admin" element={
+          <PrivateRoute roles={['administrador']}>
+            <MainAdmin />
+          </PrivateRoute>
+        } />
+        <Route path="/escritor" element={
+          <PrivateRoute roles={['escritor']}>
+            <MainEscritor />
+          </PrivateRoute>
+        } />
         </Routes>
       <Footer />
     </BrowserRouter>
