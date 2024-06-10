@@ -1,7 +1,9 @@
+// Importamos las cosas que necesitamos importar
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function Register() {
+    // Define los estados iniciales para los valores del formulario, los valores de los checkboxes, los errores y los campos tocados
     const [values, setValues] = useState({
         username: "",
         name: "",
@@ -40,6 +42,7 @@ function Register() {
         checkboxes: false
     });
 
+    // Manejamos el cambio en los campos del formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
         setValues((prevValues) => ({
@@ -52,6 +55,7 @@ function Register() {
         }));
     };
 
+    // Manejamos el cambio en los checkboxes
     const handleCheckboxChange = (e) => {
         const { name, checked } = e.target;
         setCheckboxValues((prevCheckboxValues) => ({
@@ -64,6 +68,7 @@ function Register() {
         }));
     };
 
+    // Realizamos la validación cuando los valores o los checkboxes cambian
     useEffect(() => {
         const newErrors = {};
 
@@ -86,6 +91,7 @@ function Register() {
         setErrors(newErrors);
     }, [values, checkboxValues, touched]);
 
+    // Realizamos la validación de cada campo del formulario
     const validateInput = (name, value) => {
         let errorMessage = "";
         switch (name) {
@@ -116,6 +122,7 @@ function Register() {
         return errorMessage;
     };
 
+    // Funciones de validación para cada campo del formulario
     const validateUsername = (value) => {
         if (!value.trim()) {
             return "El nombre de usuario es obligatorio";
@@ -209,6 +216,7 @@ function Register() {
         return "";
     };
 
+    // Maneja el envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
 

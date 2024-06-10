@@ -1,3 +1,4 @@
+// Importamos las cosas que necesitamos importar
 import BotonesPildoraMain from './BotonesPildoraMain.js';
 import SectionComponentBigDiv from './SectionComponentBigDiv.js';
 import './Style.css';

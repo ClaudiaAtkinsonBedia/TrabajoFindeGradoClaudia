@@ -15,6 +15,9 @@ switch ($action) {
     case 'login':
         include 'CONTROLADOR/IniciarSesion.php';
         break;
+    case 'publicarHistorias':
+        include 'CONTROLADOR/PublicarHistorias.php';
+        break;
     default:
         header('Content-Type: application/json');
         $response = [

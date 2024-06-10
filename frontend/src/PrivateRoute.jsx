@@ -10,13 +10,13 @@ const PrivateRoute = ({ children, roles }) => {
     return <Navigate to="/login" />;
   }
 
-  // Verificar si el rol del usuario está en la lista de roles permitidos
+  // Verificamos si el rol del usuario está en la lista de roles permitidos
   if (!roles.includes(userRole)) {
-    // Redirigir a la página de inicio si el usuario no tiene acceso
+    // Redirige a la página de inicio si el usuario no tiene acceso
     return <Navigate to="/" />;
   }
 
-  // Renderizar el componente hijo si el usuario tiene acceso
+  // Renderiza el componente hijo si el usuario tiene acceso
   return children;
 };
 

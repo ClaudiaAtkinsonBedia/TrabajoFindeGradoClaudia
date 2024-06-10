@@ -1,13 +1,15 @@
+// Importamos las cosas que necesitamos importar
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext.jsx';
 
 function Login() {
-    const navigate = useNavigate();
-    const [values, setValues] = useState({ username: "", password: "" });
-    const [errors, setErrors] = useState({ username: "", password: "" });
-    const { login } = useContext(AuthContext);
+    const navigate = useNavigate(); // Hook para la redirección 
+    const [values, setValues] = useState({ username: "", password: "" }); // Estado para los valores del formulario
+    const [errors, setErrors] = useState({ username: "", password: "" }); // Estado para los mensajes de error
+    const { login } = useContext(AuthContext); // Extraemos la función de login del contexto de autenticación
 
+    // Manejamos los cambios en los campos del formulario
     const handleChange = (e) => {
         const { name, value } = e.target;
         setValues((prevValues) => ({
@@ -17,14 +19,15 @@ function Login() {
         validateInput(name, value);
     };
 
+    // Validamos la entrada de los campos del formulario
     const validateInput = (name, value) => {
         let errorMessage = "";
         switch (name) {
             case "username":
-                errorMessage = validateUsername(value);
+                errorMessage = validateUsername(value); // Validamos el nombre de usuario
                 break;
             case "password":
-                errorMessage = validatePassword(value);
+                errorMessage = validatePassword(value); // Validamos la contraseña
                 break;
             default:
                 break;
@@ -36,6 +39,7 @@ function Login() {
         return errorMessage;
     };
 
+    // Validamos el nombre de usuario
     const validateUsername = (value) => {
         if (!value.trim()) {
             return "El nombre de usuario es obligatorio";
@@ -43,17 +47,20 @@ function Login() {
         return "";
     };
 
+    // Validamos la contraseña
     const validatePassword = (value) => {
         if (!value.trim()) {
             return 'La contraseña es obligatoria';
         }
-        return '';
+        return "";
     };
 
+    // Manejamos el envío del formulario
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Con esto prevenimos el comportamiento predeterminado del formulario
         const newErrors = {};
         let hasErrors = false;
+        // Validamos todos los campos del formulario
         Object.keys(values).forEach((name) => {
             const errorMessage = validateInput(name, values[name]);
             if (errorMessage) {
@@ -64,9 +71,10 @@ function Login() {
 
         setErrors(newErrors);
 
-        if (hasErrors) return;
+        if (hasErrors) return; // Si hay errores, no continúa
 
         try {
+            // Enviamos la solicitud de inicio de sesión al servidor
             const response = await fetch('http://localhost:8081/index.php?action=login', {
                 method: 'POST',
                 headers: {
@@ -79,8 +87,9 @@ function Login() {
                 const data = await response.json();
                 console.log('Login response data:', data);
                 if (data.status === 'success') {
-                    login(data.token, data.role, data.username);
+                    login(data.token, data.role, data.username); // Llamamos a la función de login del contexto
                     alert('Inicio de sesión exitoso');
+                    // Redirige según el rol de usuario
                     switch (data.role) {
                         case 'administrador':
                             navigate('/admin');
@@ -99,14 +108,14 @@ function Login() {
                             break;
                     }
                 } else {
-                    alert('Inicio de sesión fallido: ' + data.message);
+                    alert('Inicio de sesión fallido: ' + data.message); // Muestra un mensaje de error si la autenticación falla
                 }
             } else {
                 const errorText = await response.text();
                 throw new Error('Network response was not ok ' + response.status + ': ' + errorText);
             }
         } catch (error) {
-            alert('Error: ' + error.message);
+            alert('Error: ' + error.message); // Muestra un mensaje de error si ocurre un problema en la solicitud
         }
     }
 

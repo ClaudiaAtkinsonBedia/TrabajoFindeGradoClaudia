@@ -1,9 +1,9 @@
 <?php
-// Mostrar todos los errores de PHP (para desarrollo)
+// Mostramos todos los errores de PHP (para desarrollo)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Incluir archivos de configuración y autoload de Composer
+// Incluimos los archivos de configuración y autoload de Composer
 require_once 'config.php';
 require_once '../vendor/autoload.php';
 
@@ -16,29 +16,29 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json; charset=UTF-8");
 
-// Cargar variables de entorno
+// Cargamos las variables de entorno
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Utilizar la variable de entorno para la clave secreta
+// Utilizamos la variable de entorno para la clave secreta
 $SECRET_KEY = $_ENV['JWT_SECRET_KEY'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Decodificar datos JSON del cuerpo de la solicitud
+    // Decodificamos los datos JSON del cuerpo de la solicitud
     $data = json_decode(file_get_contents('php://input'), true);
 
-    // Obtener valores de username y password del JSON decodificado
+    // Obtenemos los valores de username y password del JSON decodificado
     $username = $data['username'] ?? '';
     $password = $data['password'] ?? '';
 
-    // Verificar si los campos username y password están presentes
+    // Verificamos si los campos username y password están presentes
     if (empty($username) || empty($password)) {
         echo json_encode(['status' => 'error', 'message' => 'Missing required fields']);
         exit();
     }
 
     try {
-        // Preparar la consulta SQL para buscar al usuario y su rol
+        // Preparamos la consulta SQL para buscar al usuario y su rol
         $stmt = $conn->prepare('
             SELECT users.*, roles.role_name as role
             FROM users
@@ -49,9 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute(['username' => $username]);
         $user = $stmt->fetch();
 
-        // Verificar si el usuario existe y si la contraseña es correcta
+        // Verificamos si el usuario existe y si la contraseña es correcta
         if ($user && password_verify($password, $user['password'])) {
-            // Generar el JWT
+            // Generamos el JWT
             $issuedAt = time();
             $expirationTime = $issuedAt + 3600; // JWT válido por 1 hora
             $payload = [
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ];
 
             $jwt = JWT::encode($payload, $SECRET_KEY, 'HS256');
-            // Devolver el JWT y el rol del usuario en la respuesta JSON
+            // Devolvemos el JWT y el rol del usuario en la respuesta JSON
             echo json_encode(['status' => 'success', 'token' => $jwt, 'role' => $user['role'], 'username' => $user['username']]);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Credenciales incorrectas']);

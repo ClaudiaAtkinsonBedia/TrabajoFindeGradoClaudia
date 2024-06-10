@@ -1,3 +1,4 @@
+// Importamos las cosas que necesitamos importar
 import './Style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './img/logoSYT.png';
@@ -8,12 +9,15 @@ import MainResultados from './MainResultados.jsx';
 import { AuthContext } from './AuthContext.jsx';
 
 function Header() {
-  const [searchQuery, setSearch] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [showResults, setShowResults] = useState(false);
+  //Definimos los estados para la búsqueda
+  const [searchQuery, setSearch] = useState(''); // Estado para el texto de búsqueda
+  const [searchResults, setSearchResults] = useState([]); // Estado para los resultados de la búsqueda
+  const [showResults, setShowResults] = useState(false); // Estado para mostrar u ocultar los resultados
 
+  // Extraemos el token, el rol de usuario, el nombre de usuario y la función del logout del contento de autenticación 
   const { token, userRole, username, logout } = useContext(AuthContext);
 
+  // La función para determinar la ruta según el rol de usuario
   const botonSwitch = () => {
     switch (userRole) {
       case 'administrador':
@@ -29,24 +33,29 @@ function Header() {
     }
   };
 
+  // Con esto manejamos los cambios en el campo de búsqueda
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearch(query);
 
     if (query) {
-      const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(query.toLowerCase()));
-      setSearchResults(results);
-      setShowResults(true);
+      // filtramos los datos según la búsqueda
+      const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(query.toLowerCase())); // dataES es el JSON en español
+      setSearchResults(results); // Actualizamos el estado de los resultados de búsqueda
+      setShowResults(true); // Mostramos los resultados
     } else {
-      setShowResults(false);
+      setShowResults(false); // Ocultamos los resultados si no hay consulta
     }
   };
 
+  // Con esto manejamos el envío del formulario de búsqueda
   const handleSubmit = (e) => {
-    e.preventDefault();
-    const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase()));
-    setSearchResults(results);
-    setShowResults(true);
+    e.preventDefault(); // Previene el comportamiento predeterminado del formulario
+
+    // Filtramos los resultados basados en la consulta de búsqueda
+    const results = dataES.filter(item => item.name && item.name.toLowerCase().includes(searchQuery.toLowerCase())); // dataES es el JSON en español
+    setSearchResults(results); // Actualizamos el estado de los resultados de búsqueda
+    setShowResults(true); // Mostramos los resultados
   };
 
   return (
@@ -56,14 +65,17 @@ function Header() {
           <div className="col d-none d-lg-block text-center">
             {token ? (
               <>
+              {/* Muestra enlace a la cuenta del usuario si está autenticado */}
                 <Link to={botonSwitch()}>Cuenta de {username}</Link>
                 <button onClick={logout}>Cerrar sesión</button>
               </>
             ) : (
+              // Muestra enlace para iniciar sesión si no está autenticado
               <Link to="/login"><i className="bi bi-person-circle"></i> Iniciar sesión</Link>
             )}
           </div>
           <div className="col-lg-auto text-center">
+            {/* Muestra el logo */}
             <Link to="/"><img className="d-flex d-none d-lg-block logoEscritorio mx-auto" src={logo} alt="Logo de Share your tale"></img></Link>
           </div>
           <div className="col d-none d-lg-block text-center">
@@ -74,11 +86,13 @@ function Header() {
 
       <nav className="navbar navbar-expand-lg bg-body-tertiary fixed">
         <div className="container">
+          {/* Botón para expandir el menú en móviles */}
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <i className="bi bi-list"></i>
           </button>
           <div className="col d-lg-none">
+             {/* Muestra el logo en móviles */}
             <Link to="/"><img className="mx-auto d-flex d-block d-lg-none text-center logoMovil" src={logo} alt="Logo de Share your tale"></img></Link>
           </div>
           <div className="d-lg-none text-center">
@@ -86,18 +100,30 @@ function Header() {
               <p>ES</p> | <p>EN</p>
             </div>
             <div>
-              <Link to="/login">Iniciar sesión</Link>
+            {token ? (
+              <>
+              {/* Muestra enlace a la cuenta del usuario si está autenticado en móviles*/}
+                <Link to={botonSwitch()}>Cuenta de {username}</Link>
+                <button onClick={logout}>Cerrar sesión</button>
+              </>
+            ) : (
+              // Muestra enlace para iniciar sesión si no está autenticado en móviles
+              <Link to="/login"><i className="bi bi-person-circle"></i> Iniciar sesión</Link>
+            )}
             </div>
           </div>
           <div className="collapse navbar-collapse barraDeNavegacion" id="navbarNavDropdown">
             <ul className="navbar-nav mx-lg-auto align-items-lg-center">
               <li className="nav-item">
+                {/* Enlace a la página de inicio */}
                 <Link to="/" className="nav-link active m-lg-4">Inicio</Link>
               </li>
               <li className="nav-item">
+                {/* Enlace a la página de registro */}
                 <Link to="/register" className="nav-link active m-lg-4" aria-current="page">Hazte una cuenta</Link>
               </li>
               <li className="nav-item">
+                {/* Formulario de búsqueda */}
                 <form className="d-flex" onSubmit={handleSubmit}>
                   <input
                     className="form-control me-2"
@@ -111,12 +137,14 @@ function Header() {
                 </form>
               </li>
               <li className="nav-item">
+                {/* Enlace a la página de contacto */}
                 <Link to="/contacto" className="nav-link m-lg-4">Contacto</Link>
               </li>
             </ul>
           </div>
         </div>
       </nav>
+      {/* Muestra los resultados de búsqueda si hay resultados */}
       {showResults && <MainResultados results={searchResults} />}
     </header>
   );

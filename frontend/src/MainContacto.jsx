@@ -1,30 +1,36 @@
+// Importamos las cosas que necesitamos importar
 import './Style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 
+// Definimos el componente MainContacto
 function MainContacto() {
+  // Definimos el estado inicial para los valores del formulario
   const [values, setValues] = useState({
-    username: "",
-    email: "",
-    message: "",
+    username: "", // Nombre de usuario
+    email: "", // Correo electrónico
+    message: "", // Mensaje
   });
 
+  // Definimos el estado inicial para los errores del formulario
   const [errors, setErrors] = useState({
-    username: "",
-    email: "",
-    message: "",
+    username: "", // Error del nombre de usuario
+    email: "", // Error del correo electrónico
+    message: "", // Error del mensaje
   });
 
-  const form = useRef();
+  const form = useRef(); // Referencia al formulario
 
+  // Manejamos el cambio en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
 
-    validateInput(name, value);
+    validateInput(name, value); // Validamos el campo modificado
   };
 
+  // Validamos la entrada del formulario basada en el nombre del campo
   const validateInput = (name, value) => {
     let errorMessage = "";
     switch (name) {
@@ -40,9 +46,10 @@ function MainContacto() {
       default:
         break;
     }
-    setErrors({ ...errors, [name]: errorMessage });
+    setErrors({ ...errors, [name]: errorMessage }); // Actualiza los errores
   };
 
+  // Valida el nombre de usuario
   const validateUsername = (value) => {
     // Si el nombre está vacio
     if (!value.trim()) {
@@ -64,6 +71,7 @@ function MainContacto() {
     return "";
   };
 
+  // Valida el correo electrónico
   const validateEmail = (value) => {
     // Si el email está vacio
     if (!value.trim()) {
@@ -79,28 +87,33 @@ function MainContacto() {
     return "";
   };
 
+  // Valida el mensaje
   const validateMensaje = (value) => {
     // Si el mensaje está vacio
       if (!value.trim()) {
         return "El mensaje es obligatorio";
       }
   
+      // Si el mensaje es menor de 20 caracteres
       if (value.length < 20) {
         return `El mensaje debe tener un mínimo de 20 caracteres. ${value.length}/500`;
       }
   
+      // Si es mayor de 500
       if (value.length > 500) {
         return `El mensaje debe tener un máximo de 500 caracteres.${value.length}/500`;
       }
       
+      // Si está entre 20 y 500 caracteres
       if (value.length > 20 && value.length < 500)
       {
         
-        return "";
+        return ""; // Si no hay errores, retorna una cadena vacía
       }
       
   };
 
+  // Manejamos el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -116,12 +129,13 @@ function MainContacto() {
 
 
   if (isUsernameValid && isEmailValid && isMessageValid) {
-    sendEmail(e);
+    sendEmail(e);  // Envíamos el correo si todos los campos son válidos
     } else {
       alert("Lo sentimos, algo ha ido mal.");
     }
   };
 
+  // Función para enviar el correo utilizando emailjs
   const sendEmail = (e) => {
     e.preventDefault();
     emailjs.sendForm('service_57t6u1g', 'template_bllkyb5', form.current, 'tZze0QvuYvzD1VAOP')
