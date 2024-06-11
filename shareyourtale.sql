@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 11, 2024 at 04:30 PM
+-- Generation Time: Jun 11, 2024 at 04:43 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -92,7 +92,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `name`, `surname`, `email`, `date_born`, `password`) VALUES
 (33, 'Calucadu', 'Claudia', 'Atkinson', 'claudia.atkbed@gmail.com', '1996-08-11', '$2y$10$DNMfyRcfNx.PNgQrOEoft.ap2JVl8TQ2ERh4ZGB7tY1LlKksFX9vu'),
 (57, 'LuciPinilla', 'Lucía', 'Pinilla', 'luciapinilla@hotmail.com', '1994-05-14', '$2y$10$xCaDVY36G43ugrjlxonVKejPhFbMPw7OWh.yB53D7A99W5P6DpmMW'),
-(58, 'Ibarquilla', 'Irene', 'Barquilla', 'ibarquilla@educa.madrid.org', '1980-08-13', '$2y$10$maCme/g/ufBb.9KHrgm21ut0eeQInP2/.smM9H7TqwGsuKGmTlgM2'),
+(58, 'Ibarquilla', 'Irene', 'Barquilla', 'ibarquilla@educa.madrid.org', '1980-08-13', '$2y$10$maCme/g/ufBb.9KHrgm21ut0eeQInP2/.smM9H7TqwGsuKGmTlgM2');
 
 -- --------------------------------------------------------
 
@@ -112,7 +112,7 @@ CREATE TABLE `user_roles` (
 INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
 (33, 4),
 (57, 1),
-(58, 1),
+(58, 1);
 
 --
 -- Indexes for dumped tables
