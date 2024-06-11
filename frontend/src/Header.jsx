@@ -59,7 +59,7 @@ function Header() {
   };
 
   return (
-    <header>
+    <header className="header sticky-top">
       <div className="container">
         <div className="row justify-content-between align-items-center">
           <div className="col d-none d-lg-block text-center">
@@ -71,7 +71,7 @@ function Header() {
               </>
             ) : (
               // Muestra enlace para iniciar sesión si no está autenticado
-              <Link to="/login"><i className="bi bi-person-circle"></i> Iniciar sesión</Link>
+              <Link to="/login" className='no-underline'><i className="bi bi-person-circle"></i> Iniciar sesión</Link>
             )}
           </div>
           <div className="col-lg-auto text-center">

@@ -44,9 +44,9 @@ function Footer() {
                 <div className="col-lg-4">
                     {/* Columna 1: Mapa del sitio */}
                     <h6 className="text-center">MAPA DEL SITIO</h6>
-                    <ul className="pt-3">
-                        <li><Link to="/">Inicio</Link></li>
-                        <li><Link to="/register">Hazte una cuenta</Link></li>
+                    <ul className="pt-3 list-unstyled">
+                        <li><Link to="/" className='no-underline'>Inicio</Link></li>
+                        <li><Link to="/register" className='no-underline'>Hazte una cuenta</Link></li>
                         <li>
                             <form className="d-flex" onSubmit={handleSubmit}>
                                 <input
@@ -60,14 +60,14 @@ function Footer() {
                                 <button className="btn btn-outline-primary" type="submit">Buscar</button>
                             </form>
                         </li>
-                        <li><Link to="/contacto">Contacto</Link></li>
-                        <li><Link to="/login">Iniciar sesión</Link></li>
+                        <li><Link to="/contacto" className='no-underline'>Contacto</Link></li>
+                        <li><Link to="/login" className='no-underline'>Iniciar sesión</Link></li>
                     </ul>
                 </div>
                 {/* Columna 2: Información */}
                 <div className="col-lg-4">
                     <h6 className="text-center">INFORMACIÓN</h6>
-                    <ul className="pt-3">
+                    <ul className="pt-3 list-unstyled">
                         <li>Aviso Legal</li>
                         <li>Política de Cookies</li>
                         <li>Política de Privacidad</li>
@@ -76,8 +76,8 @@ function Footer() {
                 {/* Columna 3: Contacto */}
                 <div className="col-lg-4">
                     <h6 className="text-center">CONTACTO</h6>
-                    <ul className="pt-3">
-                        <li><Link to="/contacto">Contacta con nosotros</Link></li>
+                    <ul className="pt-3 list-unstyled">
+                        <li><Link to="/contacto" className='no-underline'>Contacta con nosotros</Link></li>
                         <li>AQUÍ LOS ICONOS</li> {/* Placeholder para los iconos de redes sociales */}
                     </ul>
                 </div>
