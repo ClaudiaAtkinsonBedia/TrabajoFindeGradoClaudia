@@ -12,6 +12,12 @@ import MainResultados from "./MainResultados.jsx";
 import MainAdmin from "./MainAdmin.jsx";
 import MainEscritor from "./MainEscritor.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
+import RegisterSuccess from "./components/RegisterSuccess.js";
+import RegisterError from "./components/RegisterError.js";
+import LoginSuccess from "./components/LoginSuccess.js";
+import LoginError from "./components/LoginError.js";
+import FormularioSuccess from "./FormularioSucces.jsx";
+import FormularioError from "./FormularioError.jsx";
 
 function AppRouter() {
   return (
@@ -23,6 +29,12 @@ function AppRouter() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/resultados" element={<MainResultados />} />
+          <Route path="/successR" element={<RegisterSuccess />} />
+          <Route path="/errorR" element={<RegisterError />} />
+          <Route path="/successL" element={<LoginSuccess />} />
+          <Route path="/errorL" element={<LoginError />} />
+          <Route path="/successF" element={<FormularioSuccess />} />
+          <Route path="/errorF" element={<FormularioError />} />
           <Route path="/admin" element={
           <PrivateRoute roles={['administrador']}>
             <MainAdmin />

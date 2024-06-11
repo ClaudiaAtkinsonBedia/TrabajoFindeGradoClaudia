@@ -88,9 +88,9 @@ function Login() {
                 console.log('Login response data:', data);
                 if (data.status === 'success') {
                     login(data.token, data.role, data.username); // Llamamos a la función de login del contexto
-                    alert('Inicio de sesión exitoso');
+                    navigate('/successL', { state: { message: 'Has iniciado sesión con éxito' } });
                     // Redirige según el rol de usuario
-                    switch (data.role) {
+                    /*switch (data.role) {
                         case 'administrador':
                             navigate('/admin');
                             break;
@@ -106,9 +106,9 @@ function Login() {
                         default:
                             navigate('/'); // Ruta predeterminada
                             break;
-                    }
+                    }*/
                 } else {
-                    alert('Inicio de sesión fallido: ' + data.message); // Muestra un mensaje de error si la autenticación falla
+                    navigate('/errorL', { state: { message: 'No has podido iniciar sesión: ' + data.message } });
                 }
             } else {
                 const errorText = await response.text();

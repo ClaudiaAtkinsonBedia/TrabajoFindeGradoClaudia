@@ -3,6 +3,7 @@ import './Style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { useNavigate } from 'react-router-dom';
 
 // Definimos el componente MainContacto
 function MainContacto() {
@@ -19,6 +20,9 @@ function MainContacto() {
     email: "", // Error del correo electrónico
     message: "", // Error del mensaje
   });
+  
+  // Para navegar a los mensajes de success o de error
+  const navigate = useNavigate();
 
   const form = useRef(); // Referencia al formulario
 
@@ -142,11 +146,11 @@ function MainContacto() {
       .then(
         (result) => {
           console.log('SUCCESS!', result.text);
-          alert('Formulario enviado correctamente.');
+          navigate('/successF', { state: { message: 'Se ha mandado el formulario con éxito' } });
         },
         (error) => {
           console.log('FAILED...', error.text);
-          alert('Error al enviar el formulario. Por favor, inténtelo de nuevo más tarde.');
+          navigate('/errorF', { state: { message: 'No se ha podido mandar el formulario: ' + data.message } });
         }
       );
   };

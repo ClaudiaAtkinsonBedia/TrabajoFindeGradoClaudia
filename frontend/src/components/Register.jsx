@@ -1,6 +1,7 @@
 // Importamos las cosas que necesitamos importar
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
     // Define los estados iniciales para los valores del formulario, los valores de los checkboxes, los errores y los campos tocados
@@ -41,6 +42,9 @@ function Register() {
         pass: false,
         checkboxes: false
     });
+
+    // Para navegar a los mensajes de success o de error
+    const navigate = useNavigate();
 
     // Manejamos el cambio en los campos del formulario
     const handleChange = (e) => {
@@ -256,9 +260,9 @@ function Register() {
                 if (response.ok) {
                     const data = await response.json();
                     if (data.status === 'success') {
-                        alert('Te has registrado correctamente');
+                        navigate('/successR', { state: { message: 'Te has registrado correctamente' } });
                     } else {
-                        alert('No te has podido registrar: ' + data.message);
+                        navigate('/errorR', { state: { message: 'No te has podido registrar: ' + data.message } });
                     }
                 } else {
                     throw new Error('Network response was not ok ' + response.status);
