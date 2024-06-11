@@ -15,5 +15,7 @@ Para configurar el proyecto, sigue estos pasos:
     3.3. Si es necesario, instala phpdotenv: `composer require vlucas/phpdotenv`
 4. Instala las dependencias: `composer install`
 5. Ejecuta el servidor en el puerto `8081`. Importante que sea ese puerto, si no, no va a funcionar. Recomiendo usar XAMPP.
-6. Cuando abramos el proyecto en Visual Studio Code, debemos posicionarnos en "frontend" y ahí podemos abrir el proyecto: `cd frontend` y `npm start`.
-7. Debemos asegurarnos de que el proyecto está ejecutándose en los puertos `3000` y `8081`, si no, no funcionará.
+6. Debemos instalar Node.js en nuestra máquina (si no la tenemos ya instalada) para que podamos hacer el siguiente paso.
+7. Cuando abramos el proyecto en Visual Studio Code, debemos posicionarnos en "frontend" y ahí podemos abrir el proyecto: `cd frontend` y `npm start`.
+8. Debemos asegurarnos de que el proyecto está ejecutándose en los puertos `3000` y `8081`, si no, no funcionará.
+9. Debemos copiar y pegar la BBDD que está adjuntada en el proyecto. Se llama `shareyourtale.sql` y deberá ir en el localhost con el nombre de `shareyourtale` 
