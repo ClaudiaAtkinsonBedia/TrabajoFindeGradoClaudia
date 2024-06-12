@@ -13,6 +13,7 @@ function Header() {
   const [searchQuery, setSearch] = useState(''); // Estado para el texto de búsqueda
   const [searchResults, setSearchResults] = useState([]); // Estado para los resultados de la búsqueda
   const [showResults, setShowResults] = useState(false); // Estado para mostrar u ocultar los resultados
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true); // Estado para el colapso del navbar
 
   // Extraemos el token, el rol de usuario, el nombre de usuario y la función del logout del contento de autenticación 
   const { token, userRole, username, logout } = useContext(AuthContext);
@@ -58,6 +59,10 @@ function Header() {
     setShowResults(true); // Mostramos los resultados
   };
 
+  const funcionBajarMenu = () => {
+    setIsNavCollapsed(!isNavCollapsed);
+  }
+
   return (
     <header className="header sticky-top">
       <div className="container">
@@ -84,11 +89,11 @@ function Header() {
         </div>
       </div>
 
-      <nav className="navbar navbar-expand-lg bg-body-tertiary fixed">
+      <nav className="navbar navbar-expand-lg">
         <div className="container">
           {/* Botón para expandir el menú en móviles */}
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            aria-controls="navbarNavDropdown" aria-expanded={!isNavCollapsed} aria-label="Toggle navigation" onClick={funcionBajarMenu}>
             <i className="bi bi-list"></i>
           </button>
           <div className="col d-lg-none">
@@ -108,11 +113,11 @@ function Header() {
               </>
             ) : (
               // Muestra enlace para iniciar sesión si no está autenticado en móviles
-              <Link to="/login"><i className="bi bi-person-circle"></i> Iniciar sesión</Link>
+              <Link to="/login" className='no-underline'><i className="bi bi-person-circle"></i> Iniciar sesión</Link>
             )}
             </div>
           </div>
-          <div className="collapse navbar-collapse barraDeNavegacion" id="navbarNavDropdown">
+          <div className={`${isNavCollapsed ? 'collapse' : 'show'} navbar-collapse barraDeNavegacion`} id="navbarNavDropdown">
             <ul className="navbar-nav mx-lg-auto align-items-lg-center">
               <li className="nav-item">
                 {/* Enlace a la página de inicio */}

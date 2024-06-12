@@ -11,13 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-header
-{
-  background-color: #F49CE5;
-}
-
-.no-underline {
-  text-decoration: none;
-  color: inherit;
-}

@@ -12,10 +12,10 @@ import MainResultados from "./MainResultados.jsx";
 import MainAdmin from "./MainAdmin.jsx";
 import MainEscritor from "./MainEscritor.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
-import RegisterSuccess from "./components/RegisterSuccess.js";
-import RegisterError from "./components/RegisterError.js";
-import LoginSuccess from "./components/LoginSuccess.js";
-import LoginError from "./components/LoginError.js";
+import RegisterSuccess from "./components/RegisterSuccess.jsx";
+import RegisterError from "./components/RegisterError.jsx";
+import LoginSuccess from "./components/LoginSuccess.jsx";
+import LoginError from "./components/LoginError.jsx";
 import FormularioSuccess from "./FormularioSucces.jsx";
 import FormularioError from "./FormularioError.jsx";
 

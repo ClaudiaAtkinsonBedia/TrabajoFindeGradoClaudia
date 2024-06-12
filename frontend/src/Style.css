@@ -10,6 +10,21 @@
     height: 13vw;
 }
 
+header
+{
+  background-color: #F49CE5;
+}
+
+.navbar
+{
+  background-color: #F49CE5;
+}
+
+.no-underline {
+  text-decoration: none;
+  color: inherit;
+}
+
 .barraDeNavegacion
 {
     height: 3vw;
@@ -63,5 +78,5 @@
   .search-results li:hover 
   {
     background: #f0f0f0;
-  } */
+  }*/
   
