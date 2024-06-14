@@ -11,7 +11,7 @@ function MainInicio() {
                 <div className="container mb-5">
                     <div className="row mt-4 ms-3">
                         <h1 className="text-center">Bienvenid@ a Share your tale</h1>
-                        <h3 className="text-center">Donde escribir está a tu alcance.</h3>
+                        <h3 className="text-center">Donde escribir está a tu alcance</h3>
                     </div>
                 </div>
                 <div className="container">

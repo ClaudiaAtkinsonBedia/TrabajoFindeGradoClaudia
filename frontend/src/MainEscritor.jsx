@@ -5,6 +5,11 @@ function MainEscritor() {
     const [values, setValues] = useState({ storyName: "", text: "" });
     const [errors, setErrors] = useState({ storyName: "", text: "" });
     const { jwt } = useContext(AuthContext); // Obtener el token JWT del contexto
+    const [sidebarActive, setSidebarActive] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarActive(!sidebarActive);
+  };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -86,63 +91,61 @@ function MainEscritor() {
     };
     
     return (
-        <div className="container">
-            <div className="row">
-                <h2 className="justify-items-center text-center">Menú de Escritor</h2>
-                <aside id="sidebar">
-                    <div className="sidebar-title">
-                        <div className="sidebar-brand d-flex justify-items-between">
-                            <h5 className="mx-2">Ajustes</h5><i className="bi bi-gear icon_header"></i>
-                        </div>
-                        <span className="icon close_icon">X</span>
-                    </div>
-
-                    <ul className="sidebar-list">
-                        <li className="sidebar-list-item">
-                            <i className="bi bi-person-gear icon"></i>ALGO
-                        </li>
-                        <li className="sidebar-list-item">
-                            <i className="bi bi-person-gear icon"></i>ALGO
-                        </li>
-                        <li className="sidebar-list-item">
-                            <i className="bi bi-person-gear icon"></i>ALGO
-                        </li>
-                        <li className="sidebar-list-item">
-                            <i className="bi bi-person-gear icon"></i>ALGO
-                        </li>
-                        <li className="sidebar-list-item">
-                            <i className="bi bi-person-gear icon"></i>ALGO
-                        </li>
-                    </ul>
-                </aside>
-                <div>
-                    <form onSubmit={handleSubmit} noValidate>
-                        <div className="form-group mt-3">
-                            <input className='form-control'
-                                type="text"
-                                name="storyName"
-                                value={values.storyName}
+        <div>
+          <button className={`sidebar-toggle ${sidebarActive ? 'active' : ''}`} onClick={toggleSidebar}>
+            <i className="bi bi-list"></i>
+          </button>
+          <aside id="sidebar" className={sidebarActive ? 'active' : ''}>
+            <div className="sidebar-title">
+              <div className="sidebar-brand d-flex justify-content-between">
+                <h5 className="mx-2">Ajustes</h5><i className="bi bi-gear icon_header"></i>
+              </div>
+              <span className="icon close_icon" onClick={toggleSidebar}>X</span>
+            </div>
+            <ul className="sidebar-list">
+              <li className="sidebar-list-item">
+                <i className="bi bi-person-gear icon"></i>Cambiar tipo de cuenta
+              </li>
+              <li className="sidebar-list-item">
+                <i className="bi bi-person-gear icon"></i>Ajustes de cuenta
+              </li>
+              <li className="sidebar-list-item">
+                <i className="bi bi-person-gear icon"></i>Borrar cuenta
+              </li>
+            </ul>
+          </aside>
+          <div className="container main-content">
+            <h2 className="justify-items-center text-center">Menú de Escritor</h2>
+            <div>
+                        <form onSubmit={handleSubmit} noValidate>
+                            <div className="form-group mt-3">
+                                <input className='form-control'
+                                    type="text"
+                                    name="storyName"
+                                    value={values.storyName}
+                                    onChange={handleChange}
+                                    placeholder="Nombre de la historia"
+                                />
+                            </div>
+                            <span className="text-danger">{errors.username}</span>
+                            <div className="form-group mt-3">
+                            <textarea className='form-control'
+                                name="text"
+                                value={values.text}
                                 onChange={handleChange}
-                                placeholder="Nombre de la historia"
+                                placeholder="Historia"
                             />
                         </div>
-                        <span className="text-danger">{errors.username}</span>
-                        <div className="form-group mt-3">
-                        <textarea className='form-control'
-                            name="text"
-                            value={values.text}
-                            onChange={handleChange}
-                            placeholder="Historia"
-                        />
+                            <span className="text-danger">{errors.username}</span>
+                            <button type="submit" className="btn btn-primary mt-3 mb-3">Publicar historia</button>
+                        </form>
                     </div>
-                        <span className="text-danger">{errors.username}</span>
-                        <button type="submit" className="btn btn-primary mt-3 mb-3">Publicar historia</button>
-                    </form>
-                </div>
-
-            </div>
+          </div>
         </div>
-    );
-}
+      );
+    }
+
 
 export default MainEscritor;
+
+  

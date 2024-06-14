@@ -1,0 +1,7 @@
+<VirtualHost *:8081>
+    DocumentRoot "DONDE_TENGAS_XAMPP\xampp\htdocs\TrabajoFindeGradoClaudia\backend"
+    <Directory "DONDE_TENGAS_XAMPP\xampp\htdocs\TrabajoFindeGradoClaudia\backend">
+        AllowOverride None
+        Require all granted
+    </Directory>
+</VirtualHost>

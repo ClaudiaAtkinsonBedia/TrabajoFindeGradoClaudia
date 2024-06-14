@@ -10,6 +10,7 @@
     height: 13vw;
 }
 
+/* HEADER*/
 header
 {
   background-color: #F49CE5;
@@ -29,6 +30,7 @@ header
 {
     height: 3vw;
 }
+/* Fin HEADER*/
 
 .bigDiv
 {
@@ -80,3 +82,100 @@ header
     background: #f0f0f0;
   }*/
   
+/* Sidebar */
+
+#sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #F49CE5;
+  overflow-y: auto;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  z-index: 10;
+}
+
+.container {
+  margin-left: 250px; /* Espacio a la izquierda para el contenido en escritorio */
+  transition: margin-left 0.5s;
+}
+
+.sidebar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px 0px 30px;
+  margin-bottom: 30px;
+}
+
+.sidebar-title > span {
+  display: none;
+}
+
+.sidebar-brand {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sidebar-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.sidebar-list-item {
+  padding: 20px;
+  font-size: 18px;
+}
+
+.sidebar-list-item:hover {
+  background-color: #e08ccc;
+  cursor: pointer;
+}
+
+.sidebar-list-item > a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #sidebar {
+    left: -250px; /* Oculta el sidebar en móvil */
+  }
+
+  #sidebar.active {
+    left: 0; /* Muestra el sidebar cuando está activo */
+  }
+
+  .container {
+    margin-left: 0; /* Quita el margen izquierdo en móvil */
+  }
+
+  .sidebar-toggle {
+    display: block;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: #F49CE5;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 20;
+  }
+
+  .sidebar-toggle.active {
+    left: 265px; /* Ajusta la posición cuando el sidebar está abierto */
+  }
+}
+
+/* Ensure proper display of list items in sidebar */
+#sidebar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Fin sidebar */
