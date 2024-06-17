@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import letrasfap from './../img/letrasfap.png';
 
 function Register() {
     // Define los estados iniciales para los valores del formulario, los valores de los checkboxes, los errores y los campos tocados
@@ -273,8 +274,16 @@ function Register() {
         }
     };
 
+    const backgroundStyle = {
+        backgroundImage: `url(${letrasfap})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+    };
+
     return (
-        <div className='container'>
+        <main style={backgroundStyle} className='bg-image'>
+            <div className='container'>
             <div className='row justify-content-center'>
                 <div className="col-md-6 text-center">
                     <h3 className='mt-3'>Regístrate</h3>
@@ -384,14 +393,15 @@ function Register() {
                             <span className="text-danger">{touched.checkboxes && errors.checkboxes}</span>
                         </div>
                         <div>
-                            <button type="submit" className="btn btn-primary mt-3">Registrarse</button>
+                            <button type="submit" id='button' className="btn mt-3">Registrarse</button>
                         </div> 
                     </form>
-                    <p className='mt-3'>¿Ya tienes una cuenta? <Link to="/login">Inicia sesión</Link></p>
+                    <p className='mt-3'>¿Ya tienes una cuenta? <Link to="/login" id='link2'>Inicia sesión</Link></p>
 
                 </div>
             </div>
         </div>
+        </main>
     );
 }
 

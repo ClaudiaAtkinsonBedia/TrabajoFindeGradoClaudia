@@ -40,7 +40,7 @@ function Footer() {
     return (    
         <footer>
         <div className="container">
-            <div className="row">
+            <div className="row pt-5">
                 <div className="col-lg-4">
                     {/* Columna 1: Mapa del sitio */}
                     <h6 className="text-center">MAPA DEL SITIO</h6>
@@ -57,7 +57,7 @@ function Footer() {
                                     value={searchQuery}
                                     onChange={handleSearchChange}
                                 />
-                                <button className="btn btn-outline-primary" type="submit">Buscar</button>
+                                <button id='button2' className="btn" type="submit">Buscar</button>
                             </form>
                         </li>
                         <li><Link to="/contacto" className='no-underline'>Contacto</Link></li>
@@ -78,7 +78,7 @@ function Footer() {
                     <h6 className="text-center">CONTACTO</h6>
                     <ul className="pt-3 list-unstyled">
                         <li><Link to="/contacto" className='no-underline'>Contacta con nosotros</Link></li>
-                        <li>AQUÍ LOS ICONOS</li> {/* Placeholder para los iconos de redes sociales */}
+                        <li><i class="bi bi-twitter orange"></i><i class="bi bi-facebook orange"></i><i class="bi bi-instagram orange"></i></li>
                     </ul>
                 </div>
             </div>

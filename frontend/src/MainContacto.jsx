@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { useNavigate } from 'react-router-dom';
+import letrasfap from './img/letrasfap.png';
 
 // Definimos el componente MainContacto
 function MainContacto() {
@@ -155,11 +156,18 @@ function MainContacto() {
       );
   };
 
+  const backgroundStyle = {
+    backgroundImage: `url(${letrasfap})`,
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
+  };
+
   return (
     <div>
-      <main>
+      <main style={backgroundStyle} className='bg-image'>
         <div className="container text-center">
-          <h3 className="mb-3 mt-3">Formulario de contacto</h3>
+          <h3 className="mb-3 pt-3">Formulario de contacto</h3>
           <form className="row" ref={form} onSubmit={handleSubmit} noValidate>
             <div className="col-10 mx-auto">
               <label htmlFor="username">Nombre y apellidos</label>
@@ -203,7 +211,7 @@ function MainContacto() {
               </span>
             </div>
             <div className="col-12 mt-3 mb-3">
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" id='button' className="btn">
                 Enviar
               </button>
             </div>

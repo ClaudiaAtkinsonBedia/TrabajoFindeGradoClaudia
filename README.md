@@ -20,3 +20,4 @@ Para configurar el proyecto, sigue estos pasos:
     7.1. Si nos da algún problema al hacer npm start, debemos hacer `npm install`.
 8. Debemos asegurarnos de que el proyecto está ejecutándose en los puertos `3000` y `8081`, si no, no funcionará.
 9. Debemos copiar y pegar la BBDD que está adjuntada en el proyecto. Se llama `shareyourtale.sql` y deberá ir en el localhost con el nombre de `shareyourtale`.
+10. Hay un documento en el proyecto llamado CORS.txt. Debemos copiarlo y pegarlo en el httpd.conf de Apache. Así no dará problemas el CORS del navegador. 

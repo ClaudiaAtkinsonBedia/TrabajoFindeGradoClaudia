@@ -68,23 +68,28 @@ function Header() {
       <div className="container">
         <div className="row justify-content-between align-items-center">
           <div className="col d-none d-lg-block text-center">
-            {token ? (
-              <>
-              {/* Muestra enlace a la cuenta del usuario si está autenticado */}
-                <Link to={botonSwitch()}>Cuenta de {username}</Link>
-                <button onClick={logout}>Cerrar sesión</button>
-              </>
-            ) : (
-              // Muestra enlace para iniciar sesión si no está autenticado
-              <Link to="/login" className='no-underline'><i className="bi bi-person-circle"></i> Iniciar sesión</Link>
-            )}
           </div>
           <div className="col-lg-auto text-center">
             {/* Muestra el logo */}
             <Link to="/"><img className="d-flex d-none d-lg-block logoEscritorio mx-auto" src={logo} alt="Logo de Share your tale"></img></Link>
           </div>
           <div className="col d-none d-lg-block text-center">
-            <p>ES</p> | <p>EN</p>
+          {token ? (
+              <>
+              {/* Muestra enlace a la cuenta del usuario si está autenticado */}
+              <div className='row'>
+                <div className='col-12'>
+                  <Link to={botonSwitch()} className='no-underline'>Cuenta de {username}</Link>
+                </div>
+                <div className='col-12 pt-3'>
+                  <button className="btn" id='button' onClick={logout}>Cerrar sesión</button>
+                </div>
+              </div>
+              </>
+            ) : (
+              // Muestra enlace para iniciar sesión si no está autenticado
+              <Link to="/login" id='link' className='no-underline'><i className="bi bi-person-circle"></i> Iniciar sesión</Link>
+            )}
           </div>
         </div>
       </div>
@@ -102,18 +107,23 @@ function Header() {
           </div>
           <div className="d-lg-none text-center">
             <div>
-              <p>ES</p> | <p>EN</p>
             </div>
             <div>
             {token ? (
               <>
               {/* Muestra enlace a la cuenta del usuario si está autenticado en móviles*/}
-                <Link to={botonSwitch()}>Cuenta de {username}</Link>
-                <button onClick={logout}>Cerrar sesión</button>
+              <div>
+              <div className='col-12'>
+                <Link to={botonSwitch()}className='no-underline'>Cuenta de {username}</Link>
+                </div>
+                <div className='col-12 pt-3'>
+                  <button className="btn" id='button' onClick={logout}>Cerrar sesión</button>
+                </div>
+              </div>
               </>
             ) : (
               // Muestra enlace para iniciar sesión si no está autenticado en móviles
-              <Link to="/login" className='no-underline'><i className="bi bi-person-circle"></i> Iniciar sesión</Link>
+              <Link to="/login" id='link' className='no-underline'><i className="bi bi-person-circle"></i> Iniciar sesión</Link>
             )}
             </div>
           </div>
@@ -125,7 +135,7 @@ function Header() {
               </li>
               <li className="nav-item">
                 {/* Enlace a la página de registro */}
-                <Link to="/register" className="nav-link active m-lg-4" aria-current="page">Hazte una cuenta</Link>
+                <Link to="/register" className="nav-link active m-lg-4">Hazte una cuenta</Link>
               </li>
               <li className="nav-item">
                 {/* Formulario de búsqueda */}
@@ -138,7 +148,7 @@ function Header() {
                     value={searchQuery}
                     onChange={handleSearchChange}
                   />
-                  <button className="btn btn-outline-primary" type="submit">Buscar</button>
+                  <button className="btn" id='button' type="submit">Buscar</button>
                 </form>
               </li>
               <li className="nav-item">

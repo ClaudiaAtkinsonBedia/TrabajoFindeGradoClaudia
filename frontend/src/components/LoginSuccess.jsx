@@ -1,6 +1,7 @@
 // Importamos las cosas que necesitamos importar
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import letrasfap from './../img/letrasfap.png';
 
 const LoginSuccess = () => {
     // Obtenemos la ubicación actual usando el hook useLocation de React Router
@@ -9,14 +10,23 @@ const LoginSuccess = () => {
     // Si no hay un mensaje, utilizamos un mensaje por defecto
     const message = location.state?.message || 'Has iniciado sesión con éxito';
 
+    const backgroundStyle = {
+        backgroundImage: `url(${letrasfap})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+    };
+
     return (
-        <div className='d-flex align-items-center justify-content-center mt-5 mb-5'>
+        <main style={backgroundStyle} className='bg-image'>
+            <div className='d-flex align-items-center justify-content-center pt-5 pb-5'>
             <div className='text-center'>
                 <div>
                     <h1 className='display-1'>{message}</h1>
                 </div>
             </div>
         </div>
+        </main>
     );
 };
 

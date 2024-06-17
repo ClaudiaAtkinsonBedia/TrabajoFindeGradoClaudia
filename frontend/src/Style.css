@@ -13,17 +13,26 @@
 /* HEADER*/
 header
 {
-  background-color: #F49CE5;
+  background-color: #F5D6EF;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .navbar
 {
-  background-color: #F49CE5;
+  background-color: #F5D6EF;
 }
 
-.no-underline {
+.no-underline 
+{
   text-decoration: none;
   color: inherit;
+}
+
+.no-underline:hover 
+{
+  color: #FAC096;
 }
 
 .barraDeNavegacion
@@ -45,6 +54,72 @@ header
 .text-danger 
 {
     color: red;
+}
+
+#button
+{
+  background-color: #FAC096;
+}
+
+#button:hover
+{
+  background-color: #BCBAFF;
+}
+
+#button2
+{
+  background-color: #FAC096;
+}
+
+#button2:hover
+{
+  background-color: #F5D6EF;
+}
+
+#sytpalabras
+{
+  color: #FAC096;
+  font-size: larger;
+}
+
+#naranja
+{
+  border-style: solid;
+  border: #FAC096;
+}
+
+#naranja:hover
+{
+  background-color: #F5D6EF;
+  font-size: larger;
+}
+
+#link:hover
+{
+  color: white;
+}
+
+#link2
+{
+  color: #FAC096;
+}
+
+#link2:hover
+{
+  color: black;
+}
+
+main
+{
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+  .ele
+{
+  size: 2vw;
+  display: block;
 }
 
 /*.search-results 
@@ -82,7 +157,26 @@ header
     background: #f0f0f0;
   }*/
   
+  footer
+  {
+    background: #BCBAFF;
+    height: 30vw;
+  }
+
+footer .text-center
+{
+  font-size: larger;
+}
+
+.orange
+{
+  color: #FAC096;
+  font-size: 1.5vw;
+  padding-left: 0.5vw;
+}
+
 /* Sidebar */
+
 
 #sidebar {
   position: fixed;
@@ -90,7 +184,7 @@ header
   top: 0;
   width: 250px;
   height: 100%;
-  background-color: #F49CE5;
+  background-color: #F5D6EF;
   overflow-y: auto;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;

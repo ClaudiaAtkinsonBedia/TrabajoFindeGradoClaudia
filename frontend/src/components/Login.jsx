@@ -2,6 +2,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthContext.jsx';
+import letrasfap from './../img/letrasfap.png';
 
 function Login() {
     const navigate = useNavigate(); // Hook para la redirección 
@@ -119,8 +120,16 @@ function Login() {
         }
     }
 
+    const backgroundStyle = {
+        backgroundImage: `url(${letrasfap})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+    };
+
     return (
-        <div className='container'>
+        <main style={backgroundStyle} className='bg-image'>
+            <div  className='container'>
             <div className='row justify-content-center'>
                 <div className="col-md-6 text-center">
                     <h3 className='mt-3'>Iniciar Sesión</h3>
@@ -146,13 +155,14 @@ function Login() {
                         </div>
                         <span className="text-danger">{errors.password}</span>
                         <div>
-                            <button type="submit" className="btn btn-primary mt-3 mb-3">Iniciar Sesión</button>
+                            <button type="submit" id='button' className="btn mt-3 mb-3">Iniciar Sesión</button>
                         </div>
                     </form>
-                    <p>¿No tienes una cuenta? <Link to="/register">Regístrate</Link></p>
+                    <p>¿No tienes una cuenta? <Link to="/register" id='link2'>Regístrate</Link></p>
                 </div>
             </div>
         </div>
+        </main>
     );
 }
 

@@ -1,5 +1,7 @@
+// Importamos las cosas que necesitamos importar
 import React, { useState, useContext } from 'react';
 import { AuthContext } from './AuthContext';
+import letrasfap from './img/letrasfap.png';
 
 function MainEscritor() {
     const [values, setValues] = useState({ storyName: "", text: "" });
@@ -7,9 +9,9 @@ function MainEscritor() {
     const { jwt } = useContext(AuthContext); // Obtener el token JWT del contexto
     const [sidebarActive, setSidebarActive] = useState(false);
 
-  const toggleSidebar = () => {
-    setSidebarActive(!sidebarActive);
-  };
+    const toggleSidebar = () => {
+        setSidebarActive(!sidebarActive);
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -89,34 +91,42 @@ function MainEscritor() {
             alert('Error: ' + error.message);
         }
     };
-    
+
+    const backgroundStyle = {
+        backgroundImage: `url(${letrasfap})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+      };
+
     return (
-        <div>
-          <button className={`sidebar-toggle ${sidebarActive ? 'active' : ''}`} onClick={toggleSidebar}>
-            <i className="bi bi-list"></i>
-          </button>
-          <aside id="sidebar" className={sidebarActive ? 'active' : ''}>
-            <div className="sidebar-title">
-              <div className="sidebar-brand d-flex justify-content-between">
-                <h5 className="mx-2">Ajustes</h5><i className="bi bi-gear icon_header"></i>
-              </div>
-              <span className="icon close_icon" onClick={toggleSidebar}>X</span>
-            </div>
-            <ul className="sidebar-list">
-              <li className="sidebar-list-item">
-                <i className="bi bi-person-gear icon"></i>Cambiar tipo de cuenta
-              </li>
-              <li className="sidebar-list-item">
-                <i className="bi bi-person-gear icon"></i>Ajustes de cuenta
-              </li>
-              <li className="sidebar-list-item">
-                <i className="bi bi-person-gear icon"></i>Borrar cuenta
-              </li>
-            </ul>
-          </aside>
-          <div className="container main-content">
-            <h2 className="justify-items-center text-center">Menú de Escritor</h2>
+        <main style={backgroundStyle} className='bg-image'>
             <div>
+                <button className={`sidebar-toggle ${sidebarActive ? 'active' : ''}`} onClick={toggleSidebar}>
+                    <i className="bi bi-list"></i>
+                </button>
+                <aside id="sidebar" className={sidebarActive ? 'active' : ''}>
+                    <div className="sidebar-title">
+                        <div className="sidebar-brand d-flex justify-content-between">
+                            <h5 className="mx-2">Ajustes</h5><i className="bi bi-gear icon_header"></i>
+                        </div>
+                        <span className="icon close_icon" onClick={toggleSidebar}>X</span>
+                    </div>
+                    <ul className="sidebar-list">
+                        <li className="sidebar-list-item">
+                            <i className="bi bi-person-gear icon"></i>Cambiar tipo de cuenta
+                        </li>
+                        <li className="sidebar-list-item">
+                            <i className="bi bi-person-gear icon"></i>Ajustes de cuenta
+                        </li>
+                        <li className="sidebar-list-item">
+                            <i className="bi bi-person-gear icon"></i>Borrar cuenta
+                        </li>
+                    </ul>
+                </aside>
+                <div className="container main-content">
+                    <h2 className="justify-items-center text-center">Menú de Escritor</h2>
+                    <div>
                         <form onSubmit={handleSubmit} noValidate>
                             <div className="form-group mt-3">
                                 <input className='form-control'
@@ -129,23 +139,23 @@ function MainEscritor() {
                             </div>
                             <span className="text-danger">{errors.username}</span>
                             <div className="form-group mt-3">
-                            <textarea className='form-control'
-                                name="text"
-                                value={values.text}
-                                onChange={handleChange}
-                                placeholder="Historia"
-                            />
-                        </div>
+                                <textarea className='form-control'
+                                    name="text"
+                                    value={values.text}
+                                    onChange={handleChange}
+                                    placeholder="Historia"
+                                />
+                            </div>
                             <span className="text-danger">{errors.username}</span>
-                            <button type="submit" className="btn btn-primary mt-3 mb-3">Publicar historia</button>
+                            <button type="submit" id='button' className="btn mt-3 mb-3">Publicar historia</button>
                         </form>
                     </div>
-          </div>
-        </div>
-      );
-    }
+                </div>
+            </div>
+        </main>
+    );
+}
 
 
 export default MainEscritor;
 
-  
